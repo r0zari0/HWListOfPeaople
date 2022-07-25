@@ -9,7 +9,7 @@ import UIKit
 
 //MARK: - ContactsCell
 class ContactsCell: UITableViewCell {
-
+    
     //MARK: - Properties
     
     @IBOutlet weak var nameLabel: UILabel!

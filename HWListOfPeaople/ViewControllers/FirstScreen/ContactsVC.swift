@@ -14,8 +14,8 @@ class ContactsVC: UIViewController {
     @IBOutlet weak var contactsTableView: UITableView!
     
     //MARK: - Properties
-     
-    let persons: [Person] = Person.getContactList()
+    
+    var persons: [Person] = []
     
     //MARK: - Life Cycle
     
@@ -35,6 +35,7 @@ private extension ContactsVC {
     
     func  setupTabeleview() {
         title = "Contacts"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     func setupTableView() {
@@ -45,17 +46,16 @@ private extension ContactsVC {
         contactsTableView.delegate = self
         contactsTableView.dataSource = self
     }
+    
+    func showFullInformation(person: Person) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewcontroller = storyboard.instantiateViewController(withIdentifier: "detailinformation") as! InformationVC
+        navigationController?.pushViewController(viewcontroller, animated: true)
+        
+        viewcontroller.personInformation = person
     }
-
-func showFullInformation(person: Person) {
-    let vc = InformationVC()
-    
-    vc.personInformation = person
-    
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    let view = storyboard.instantiateViewController(withIdentifier: "contacts")
-    view.navigationController?.pushViewController(vc, animated: true)
 }
+
 
 
 //MARK: - UITableViewDelegate
@@ -64,7 +64,7 @@ extension ContactsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let person = persons[indexPath.row]
-       showFullInformation(person: person)
+        showFullInformation(person: person)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

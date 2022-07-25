@@ -10,7 +10,7 @@ import UIKit
 //MARK: - InformationVC
 
 class InformationVC: UIViewController {
-
+    
     //MARK: - IBOutlets
     
     @IBOutlet var emailLabel: UILabel!
@@ -32,7 +32,7 @@ class InformationVC: UIViewController {
 
 extension InformationVC {
     func setupUi() {
-        emailLabel.text = personInformation.email
-        phoneLabel.text = personInformation.phonNumber
+        emailLabel.text = "Email: \(personInformation.email)"
+        phoneLabel.text = "Phone: \(personInformation.phonNumber)"
     }
 }

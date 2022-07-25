@@ -54,3 +54,7 @@ struct Person {
         return persons
     }
 }
+enum Contacts: String {
+    case phone = "phone"
+    case gmail = "trey"
+}
